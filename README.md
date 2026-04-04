@@ -1,4 +1,6 @@
-# TiffanyAngularResume
+# Pokemon Team Builder
+
+I decided I wanted to try to build an angular web app in just one weekend. This project is still a WIP, and I will update the README when I finish.
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.5.
 
