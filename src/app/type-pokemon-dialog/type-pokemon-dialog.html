@@ -1,0 +1,27 @@
+<div class="dialog-header">
+  <h2 mat-dialog-title>
+    <span class="type-chip type-{{ data.type }}">{{ data.type }}</span>
+    Pokémon
+  </h2>
+  <button mat-icon-button (click)="close()">
+    <mat-icon>close</mat-icon>
+    
+  </button>
+</div>
+
+<mat-dialog-content>
+  <mat-form-field appearance="outline" class="search-field">
+    <mat-label>Filter</mat-label>
+    <input matInput [(ngModel)]="searchTerm" />
+  </mat-form-field>
+
+  <div class="pokemon-list">
+    @for (name of filteredPokemon; track name) {
+      <span class="pokemon-name">{{ name }}</span>
+    }
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Close</button>
+</mat-dialog-actions>

@@ -1,0 +1,71 @@
+@if (loading()) {
+  <div class="loading">
+    <mat-spinner diameter="32" />
+    <p>Loading type data...</p>
+  </div>
+} @else if (profile()) {
+  <div class="type-chart">
+    <h2>Team Defensive Profile</h2>
+
+    @if (profile()!.weaknesses.length) {
+      <section>
+        <h3>Weaknesses</h3>
+        <div class="type-list">
+          @for (entry of profile()!.weaknesses; track entry.type) {
+            <span class="type-chip type-{{ entry.type }}">{{ entry.type }} ×{{ entry.multiplier }}</span>
+          }
+        </div>
+      </section>
+    }
+
+    @if (profile()!.resistances.length) {
+      <section>
+        <h3>Resistances</h3>
+        <div class="type-list">
+          @for (entry of profile()!.resistances; track entry.type) {
+            <span class="type-chip type-{{ entry.type }}">{{ entry.type }} ×{{ entry.multiplier }}</span>
+          }
+        </div>
+      </section>
+    }
+
+    @if (profile()!.immunities.length) {
+      <section>
+        <h3>Immunities</h3>
+        <div class="type-list">
+          @for (entry of profile()!.immunities; track entry.type) {
+            <span class="type-chip type-{{ entry.type }}">{{ entry.type }} ×0</span>
+          }
+        </div>
+      </section>
+    }
+
+    @if (profile()!.noProtection.length) {
+      <section>
+        <h3>No Protection</h3>
+        <div class="type-list">
+          @for (entry of profile()!.noProtection; track entry.type) {
+            <span class="type-chip type-{{ entry.type }}">{{ entry.type }} ×{{ entry.multiplier }}</span>
+          }
+        </div>
+      </section>
+    }
+
+    @if (profile()!.recommendations.length) {
+      <section>
+        <h3>Recommended Types</h3>
+        <p class="section-hint">Click a type to browse its Pokémon</p>
+        <div class="type-list">
+          @for (rec of profile()!.recommendations; track rec.type) {
+            <button
+              class="type-chip type-{{ rec.type }} recommendation-chip"
+              (click)="openPokemonDialog(rec.type)"
+            >
+              {{ rec.type }} — covers {{ rec.covers }}
+            </button>
+          }
+        </div>
+      </section>
+    }
+  </div>
+}

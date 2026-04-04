@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "tiffany-angular-resume": {
+    "pokemon-team-builder": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -24,9 +24,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.css"
-            ]
+            "styles": ["src/material-theme.scss", "src/styles.css"]
           },
           "configurations": {
             "production": {
@@ -56,10 +54,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "tiffany-angular-resume:build:production"
+              "buildTarget": "pokemon-team-builder:build:production"
             },
             "development": {
-              "buildTarget": "tiffany-angular-resume:build:development"
+              "buildTarget": "pokemon-team-builder:build:development"
             }
           },
           "defaultConfiguration": "development"
