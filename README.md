@@ -2,7 +2,7 @@
 
 🔗 **[Live Demo]https://cocoayashi.github.io/pokemon-team-builder/**
 
-A side project I built to practice Angular. You can put together a 6 Pokemon team and see how well the team holds up defensively. You will see what types it's weak to, what types it resists, and what types you have no defense against.
+A side project I built to practice Angular. You can put together a 6 Pokemon team and see how well the team holds up defensively. You will see what types your team is weak to, what types it resists, and what types your team has no defense against.
 
 ## What it does
 
