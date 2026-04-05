@@ -1,10 +1,18 @@
+/* Layout */
+
 .app-shell {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-.app-header {
+main {
+  flex: 1;
+}
+
+/* Header */
+
+.app-header { /* contains .app-title and .theme-toggle */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -14,31 +22,21 @@
   border-bottom: none;
 }
 
-.dark-mode .app-header {
-  
-  border-bottom-color: rgba(255, 255, 255, 0.12);
-}
-
-.app-title {
-  font-size: 1.2rem;
+.app-header-title {
+  font-size: 1.7rem;
   font-weight: 600;
 }
 
-main {
-  flex: 1;
-}
-
-.theme-toggle {
+.app-header-theme-toggle { /* Contains .app-header button and .theme-label */
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.theme-label {
-  font-size: 0.9rem;
+.theme-toggle-button { 
+  color: var(--mat-sys-on-primary);
 }
 
-html.dark .app-header {
-  background-color: #793636;
-  color: white;
+.theme-toggle-label {
+  font-size: 0.9rem;
 }

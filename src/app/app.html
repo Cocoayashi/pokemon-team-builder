@@ -1,10 +1,10 @@
 <div class="app-shell">
   <header class="app-header">
-    <span class="app-title">Pokémon Team Builder</span>
-    <div class="theme-toggle">
-      <span class="theme-label">{{ themeService.isDarkMode() ? 'Dark Mode' : 'Light Mode' }}</span>
-      <button mat-icon-button (click)="themeService.toggle()" [attr.aria-label]="themeService.isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'" style="color: var(--mat-sys-on-primary)">
-        <mat-icon>{{ themeService.isDarkMode() ? 'dark_mode' : 'light_mode' }}</mat-icon>
+    <span class="app-header-title">Pokémon Team Builder</span> <!-- Grabbed fancy e from poké wiki -->
+    <div class="app-header-theme-toggle">
+      <span class="theme-toggle-label">{{ isDarkMode() ? 'Switch to Light Mode' : 'Switch to Dark Mode' }}</span>
+      <button class="theme-toggle-button" mat-icon-button (click)="toggleTheme()" [attr.aria-label]="isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'">
+        <mat-icon>{{ isDarkMode() ? 'light_mode' : 'dark_mode' }}</mat-icon>
       </button>
     </div>
   </header>
