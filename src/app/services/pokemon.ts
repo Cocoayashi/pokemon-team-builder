@@ -26,6 +26,11 @@ export class PokemonService {
   private http = inject(HttpClient);
   private baseUrl = 'https://pokeapi.co/api/v2';
 
+  getPokedex(name: string): Observable<{ pokemon_entries: { pokemon_species: { name: string } }[] }> {
+    return this.http.get<{ pokemon_entries: { pokemon_species: { name: string } }[] }>(
+      `${this.baseUrl}/pokedex/${name}`
+    );
+  }
   getPokemon(nameOrId: string | number): Observable<Pokemon> {
     return this.http.get<Pokemon>(`${this.baseUrl}/pokemon/${nameOrId}`);
   }

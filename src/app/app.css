@@ -15,6 +15,7 @@
 }
 
 .dark-mode .app-header {
+  
   border-bottom-color: rgba(255, 255, 255, 0.12);
 }
 
@@ -35,4 +36,9 @@ main {
 
 .theme-label {
   font-size: 0.9rem;
+}
+
+html.dark .app-header {
+  background-color: #793636;
+  color: white;
 }

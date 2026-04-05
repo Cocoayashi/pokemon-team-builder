@@ -1,5 +1,27 @@
 <div class="page">
+<div class="filter-bar">
+  <mat-form-field appearance="outline" class="game-select">
+    <mat-label>Filter by Game</mat-label>
+    <mat-select [value]="selectedGroup()" (selectionChange)="onGameGroupChange($event.value)">
+      <mat-option [value]="null">All Pokémon</mat-option>
+      @for (group of gameGroups; track group.label) {
+        <mat-option [value]="group">{{ group.label }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
 
+  @if (selectedGroup()?.dlcPokedexes) {
+    <mat-slide-toggle
+      [checked]="includeDlc()"
+      (change)="onDlcToggle($event.checked)">
+      Include DLC
+    </mat-slide-toggle>
+  }
+
+  @if (filterLoading()) {
+    <mat-spinner diameter="24" />
+  }
+</div>
   <div class="team-grid">
     @for (slot of team; track $index) {
       <mat-card class="slot-card">
