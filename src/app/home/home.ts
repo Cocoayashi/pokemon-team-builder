@@ -15,6 +15,7 @@ import { TeamService, TeamSlot } from '../services/team';
 import { TypeChart } from '../type-chart/type-chart';
 import { GAME_GROUPS, GameGroup } from '../data/game-groups';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { PokemonCard } from '../pokemon-card/pokemon-card';
 
 @Component({
   selector: 'app-home',
@@ -32,6 +33,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatSelectModule,
     MatProgressSpinnerModule,
     TypeChart,
+    PokemonCard,
   ],
   templateUrl: './home.html',
   styleUrl: './home.css',

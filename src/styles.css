@@ -18,3 +18,11 @@
 .type-bug { background-color: #A8B820; }
 .type-ghost { background-color: #705898; }
 .type-steel { background-color: #B8B8D0; color: #333; }
+
+.type-chip {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  color: white;
+  text-transform: capitalize;
+}

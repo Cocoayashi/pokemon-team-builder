@@ -26,15 +26,6 @@ section {
   gap: 0.5rem;
 }
 
-.type-chip {
-  padding: 4px 12px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: bold;
-  color: white;
-  text-transform: capitalize;
-}
-
 .loading {
   display: flex;
   flex-direction: column;
