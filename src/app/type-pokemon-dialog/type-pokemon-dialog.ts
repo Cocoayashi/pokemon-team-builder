@@ -20,6 +20,7 @@ export interface TypePokemonDialogData {
   styleUrl: './type-pokemon-dialog.css',
 })
 export class TypePokemonDialog {
+  /*  injec */
   data = inject<TypePokemonDialogData>(MAT_DIALOG_DATA);
   private dialogRef = inject(MatDialogRef<TypePokemonDialog>);
 
@@ -28,7 +29,7 @@ export class TypePokemonDialog {
   get filteredPokemon(): string[] {
     if (!this.searchTerm) return this.data.pokemon;
     return this.data.pokemon.filter(p =>
-      p.includes(this.searchTerm.toLowerCase())
+      p.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
 
