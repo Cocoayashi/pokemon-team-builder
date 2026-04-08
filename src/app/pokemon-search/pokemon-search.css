@@ -1,0 +1,11 @@
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.slot-indicator {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}

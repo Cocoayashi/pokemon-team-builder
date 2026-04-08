@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { TeamService } from '../services/team';
 import { TypePokemonDialog } from '../type-pokemon-dialog/type-pokemon-dialog';
 import { GameGroup } from '../data/game-groups';
+import { Pokemon } from '../services/pokemon';
 
 interface TypeEntry {
   type: string;
@@ -30,7 +31,7 @@ export class TypeChart {
   loading = this.teamService.typeChartLoading;
 
   profile = computed(() => {
-    const team = this.teamService.team();
+    const team = this.teamService.team() as Pokemon[];
     const chart = this.teamService.typeChart();
 
     if (!chart) return null;

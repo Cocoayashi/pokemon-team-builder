@@ -1,10 +1,10 @@
 <mat-card class="pokemon-card">
-  @if (slot()) {
+  @if (cardPokemon()) {
     <mat-card-content class="slot-filled">
-            <img [src]="slot()!.sprites.front_default" [alt]="slot()!.name" />
-            <p class="pokemon-name">{{ slot()!.name }}</p>
+            <img [src]="cardPokemon()!.sprites.front_default" [alt]="cardPokemon()!.name" />
+            <p class="pokemon-name">{{ cardPokemon()!.name }}</p>
             <div class="type-chips">
-                @for (t of slot()!.types; track t.type.name) {
+                @for (t of cardPokemon()!.types; track t.type.name) {
                 <span class="type-chip type-{{ t.type.name }}">{{ t.type.name }}</span>
                 }
             </div>
@@ -42,28 +42,13 @@
           </div>
         }
       }
-
-      <button mat-icon-button color="warn" (click)="remove.emit()">
+      <button mat-icon-button color="warn" (click)="removePokemon()">
         <mat-icon>close</mat-icon>
       </button>
     </mat-card-content>
   } @else {
-    <mat-card-content class="slot-empty">
-      <p>Empty Slot</p>
-      <mat-form-field appearance="outline">
-        <mat-label>Search Pokémon</mat-label>
-        <input
-          matInput
-          [value]="searchInput()"
-          (input)="searchChange.emit($any($event.target).value)"
-          [matAutocomplete]="auto"
-        />
-        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="select.emit($event.option.value)">
-          @for (option of filteredOptions(); track option) {
-            <mat-option [value]="option">{{ option }}</mat-option>
-          }
-        </mat-autocomplete>
-      </mat-form-field>
-    </mat-card-content>
-  }
+  <mat-card-content class="slot-empty">
+    <p>Select a Pokémon</p>
+  </mat-card-content>
+}
 </mat-card>

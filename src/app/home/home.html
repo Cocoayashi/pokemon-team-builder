@@ -17,21 +17,16 @@
       Include DLC
     </mat-slide-toggle>
   }
-
-  @if (filterLoading()) {
-    <mat-spinner diameter="24" />
-  }
+<app-pokemon-search
+  #pokemonSearch
+  [pokemonNames]="pokemonNames()"
+/>
 </div>
   <div class="team-grid">
-  @for (slot of team; track $index) {
+  @for (member of team; track $index) {
     <app-pokemon-card
-      [slot]="slot"
+      [cardPokemon]="member"
       [index]="$index"
-      [searchInput]="searchInputs()[$index]"
-      [filteredOptions]="filteredOptions()[$index]"
-      (remove)="removePokemon($index)"
-      (searchChange)="onSearchChange($index, $event)"
-      (select)="selectPokemon($index, $event)"
     />
   }
 </div>

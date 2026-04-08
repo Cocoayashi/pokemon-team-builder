@@ -5,7 +5,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { TeamSlot, TeamService } from '../services/team';
+import { TeamService, TeamSlot } from '../services/team';
+import { Pokemon } from '../services/pokemon';
 
 @Component({
   selector: 'app-pokemon-card',
@@ -25,18 +26,11 @@ export class PokemonCard {
   private teamService = inject(TeamService);
 
   // Inputs
-  slot = input<TeamSlot>(null);
+  cardPokemon = input<TeamSlot>();
   index = input<number>(0);
-  searchInput = input<string>('');
-  filteredOptions = input<string[]>([]);
-
-  // Outputs
-  remove = output<void>();
-  searchChange = output<string>();
-  select = output<string>();
 
   getSlotProfile() {
-    const s = this.slot();
+    const s = this.cardPokemon() as Pokemon;
     if (!s) return null;
     const types = s.types.map(t => t.type.name);
     const profile = this.teamService.getPokemonDefensiveProfile(types);
@@ -48,4 +42,8 @@ export class PokemonCard {
       immunities: Object.entries(profile).filter(([, m]) => m === 0).map(([t]) => t),
     };
   }
+    removePokemon(): void {
+    this.teamService.removeFromSlot(this.index());
+  }
+  
 }

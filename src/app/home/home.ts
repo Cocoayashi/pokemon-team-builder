@@ -11,16 +11,19 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { forkJoin } from 'rxjs';
 import { PokemonService } from '../services/pokemon';
-import { TeamService, TeamSlot } from '../services/team';
+import { TeamService } from '../services/team';
 import { TypeChart } from '../type-chart/type-chart';
 import { GAME_GROUPS, GameGroup } from '../data/game-groups';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { PokemonCard } from '../pokemon-card/pokemon-card';
+import { PokemonSearch } from '../pokemon-search/pokemon-search';
+import { TEAM_SIZE } from '../services/team';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
+    PokemonSearch,
     MatSlideToggleModule, 
     CommonModule,
     FormsModule,
@@ -42,10 +45,9 @@ export class Home implements OnInit {
   private pokemonService = inject(PokemonService);
   public teamService = inject(TeamService);
 
+  selectedSlot = signal<number | null>(null)
   allPokemonNames = signal<string[]>([]);
   pokemonNames = signal<string[]>([]);
-  searchInputs = signal<string[]>(Array(6).fill(''));
-  filteredOptions = signal<string[][]>(Array.from({ length: 6 }, () => []));
   gameGroups = GAME_GROUPS;
   includeDlc = signal<boolean>(false);
   selectedGroup = signal<GameGroup | null>(null);
@@ -99,52 +101,10 @@ export class Home implements OnInit {
     });
   }
 
-  onSearchChange(index: number, value: string): void {
-    const inputs = [...this.searchInputs()];
-    inputs[index] = value;
-    this.searchInputs.set(inputs);
-
-    if (value.length < 2) {
-      const filtered = [...this.filteredOptions()];
-      filtered[index] = [];
-      this.filteredOptions.set(filtered);
-      return;
-    }
-
-    const matches = this.pokemonNames()
-      .filter(name => name.includes(value.toLowerCase()))
-      .slice(0, 10);
-
-    const filtered = [...this.filteredOptions()];
-    filtered[index] = matches;
-    this.filteredOptions.set(filtered);
-  }
-
-  selectPokemon(index: number, name: string): void {
-    this.pokemonService.getPokemon(name).subscribe(pokemon => {
-      this.teamService.addToSlot(index, pokemon);
-      const inputs = [...this.searchInputs()];
-      inputs[index] = '';
-      this.searchInputs.set(inputs);
-    });
-  }
-
-  removePokemon(index: number): void {
-    this.teamService.removeFromSlot(index);
-  }
-
-  getSlotProfile(slot: TeamSlot): { weaknesses: string[], resistances: string[], immunities: string[] } | null {
-    if (!slot) return null;
-    const types = slot.types.map(t => t.type.name);
-    const profile = this.teamService.getPokemonDefensiveProfile(types);
-    if (!profile) return null;
-
-    return {
-      weaknesses: Object.entries(profile).filter(([, m]) => m > 1).map(([t]) => t),
-      resistances: Object.entries(profile).filter(([, m]) => m < 1 && m > 0).map(([t]) => t),
-      immunities: Object.entries(profile).filter(([, m]) => m === 0).map(([t]) => t),
-    };
-  }
+onSelectPokemon(event: { slot: number; name: string }): void {
+  this.onSelectPokemon(event);
+  this.selectedSlot.set(null);
+}
 
   get team() {
     return this.teamService.team();

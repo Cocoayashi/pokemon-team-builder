@@ -1,13 +1,18 @@
 import { Injectable, signal, inject } from '@angular/core';
 import { Pokemon, PokemonService } from './pokemon';
 
+export const TEAM_SIZE = 6;
+
 export type TeamSlot = Pokemon | null;
+
+
 
 @Injectable({ providedIn: 'root' })
 export class TeamService {
   private pokemonService = inject(PokemonService);
 
-  team = signal<TeamSlot[]>(Array(6).fill(null));
+
+  team = signal<TeamSlot[]>(Array(TEAM_SIZE).fill(null));
   typeChart = signal<Record<string, Record<string, number>> | null>(null);
   typeChartLoading = signal<boolean>(true);
   pokemonByType = signal<Record<string, string[]>>({});
@@ -20,10 +25,15 @@ export class TeamService {
     });
   }
 
-  addToSlot(index: number, pokemon: Pokemon): void {
+  addToSlot(pokemon: TeamSlot): void {
     this.team.update(current => {
       const updated = [...current];
-      updated[index] = pokemon;
+      const emptyIndex = updated.findIndex(slot => slot === null);
+      
+      if (emptyIndex !== -1) {
+        updated[emptyIndex] = pokemon;
+      } 
+
       return updated;
     });
   }
@@ -54,11 +64,11 @@ export class TeamService {
     return result;
   }
 
-  getTeamDefensiveProfile(team: TeamSlot[]): Record<string, number> | null {
+  getTeamDefensiveProfile(pokemon: Pokemon[]): Record<string, number> | null {
     const chart = this.typeChart();
     if (!chart) return null;
 
-    const filledSlots = team.filter(slot => slot !== null);
+    const filledSlots = pokemon.filter(slot => slot !== null);
     if (filledSlots.length === 0) return null;
 
     const allTypes = Object.keys(chart);
