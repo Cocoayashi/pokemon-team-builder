@@ -1,5 +1,5 @@
 <mat-card class="pokemon-card">
-  @if (cardPokemon()) {
+  @if (cardPokemon) { <!--no () because cardPokemon is not a signal. Its being used for a portal, which cant use a signal-->
           <div class="remove-pokemon-button">
             <button mat-icon-button color="warn" (click)="removePokemon()">
         <mat-icon>close</mat-icon>
@@ -7,10 +7,10 @@
       </div>
     <mat-card-content class="slot-filled">
 
-            <img [src]="cardPokemon()!.sprites.front_default" [alt]="cardPokemon()!.name" />
-            <p class="pokemon-name">{{ cardPokemon()!.name }}</p>
+            <img [src]="cardPokemon!.sprites.front_default" [alt]="cardPokemon!.name" />
+            <p class="pokemon-name">{{ cardPokemon!.name }}</p>
             <div class="type-chips">
-                @for (t of cardPokemon()!.types; track t.type.name) {
+                @for (t of cardPokemon!.types; track t.type.name) {
                 <span class="type-chip type-{{ t.type.name }}">{{ t.type.name }}</span>
                 }
             </div>

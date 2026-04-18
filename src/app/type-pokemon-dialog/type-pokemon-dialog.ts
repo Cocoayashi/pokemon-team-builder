@@ -50,6 +50,7 @@ export class TypePokemonDialog {
     const ref = this.overlayRef.attach(portal);
     this.pokemonService.getPokemon(name.toLowerCase()).subscribe(pokemon => {
       const pok = pokemon;
+      ref.instance.cardPokemon = pok;
       this.hoveredPokemon.set(pok);
     });
       

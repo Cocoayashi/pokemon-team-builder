@@ -1,4 +1,4 @@
-import { Component, input, output, inject } from '@angular/core';
+import { Component, input, output, inject, Input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -26,11 +26,11 @@ export class PokemonCard {
   private teamService = inject(TeamService);
 
   // Inputs
-  cardPokemon = input<Pokemon | null>();
+  @Input() cardPokemon: Pokemon | null = null;
   index = input<number>(0);
 
   getSlotProfile() {
-    const s = this.cardPokemon() as Pokemon;
+    const s = this.cardPokemon as Pokemon;
     if (!s) return null;
     const types = s.types.map(t => t.type.name);
     const profile = this.teamService.getPokemonDefensiveProfile(types);

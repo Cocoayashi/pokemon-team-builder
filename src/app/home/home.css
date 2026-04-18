@@ -9,11 +9,16 @@
   margin-bottom: 2rem;
 }
 
+.team-content {
+  margin-top: .5rem;
+  flex: 1;
+}
+
 .pokemon-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.2rem;
-  flex: 1; /* this is what made the grid take up the whole space */
+  flex: 1; /* newbie note: this is what made the grid take up the whole space */
 }
 
 .content {
@@ -25,7 +30,7 @@
 .filter-bar {
   display: flex;
   align-items: top;
-  justify-content:center;
+  justify-content:left;
   gap: 1rem;
   margin-bottom: 1.5rem;
 }
@@ -33,4 +38,25 @@
 .game-select {
   width: 17rem;
   height: 3rem;
+}
+
+@media (max-width:1000px) {
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: top;
+}
+
+.pokemon-grid {
+grid-template-columns: repeat(2, 1fr);
+}
+
+.team-content {
+flex-wrap: wrap;
+}
+.filter-bar {
+  flex-wrap: wrap;
+}
+
 }

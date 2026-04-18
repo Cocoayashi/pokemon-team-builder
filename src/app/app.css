@@ -4,6 +4,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  margin: 0;
 }
 
 main {
@@ -13,6 +14,7 @@ main {
 /* Header */
 
 .app-header { /* contains .app-title and .theme-toggle */
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -20,7 +22,7 @@ main {
   background-color: var(--mat-sys-primary);
   color: var(--mat-sys-on-primary);
   border-bottom: none;
-  background-color: #d43737;
+  background-color: #d54545;
   background-image: repeating-linear-gradient(
     45deg,
     transparent,
@@ -28,10 +30,11 @@ main {
     rgba(0,0,0,0.08) 4px,
     rgba(0,0,0,0.08) 8px
 );
+box-sizing: border-box;
 }
 
 .app-header-title {
-  font-size: 1.7rem;
+  font-size: clamp(0.9rem, 3vw, 1.5rem);
   font-weight: 600;
 }
 
@@ -47,4 +50,10 @@ main {
 
 .theme-toggle-label {
   font-size: 0.9rem;
+}
+
+@media (max-width: 480px) {
+  .theme-toggle-label {
+    display: none;
+  }
 }

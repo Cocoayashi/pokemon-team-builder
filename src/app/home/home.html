@@ -2,11 +2,11 @@
 
 
   <div class="content">
-    <div class="">  <!-- left side of screen -->
+    <div class="team-content">  <!-- left side of screen -->
       <div class="filter-bar">
       <app-pokemon-search #pokemonSearch [pokemonNames]="pokemonNames()" />
 
-    <!-- to do, make this its own component-->
+    <!-- to do, make game select its own component-->
       <mat-form-field appearance="outline" class="game-select">
         <mat-label>Filter by Game</mat-label>
         <mat-select [value]="selectedGroup()" (selectionChange)="onGameGroupChange($event.value)">
@@ -24,13 +24,13 @@
           Include DLC
         </mat-slide-toggle>
         }
-      </div> <!--filter bar-->
+      </div> <!--end filter bar-->
       <div class="pokemon-grid">
         @for (member of team; track $index) {
           <app-pokemon-card [cardPokemon]="member" [index]="$index" />
         }
       </div>
-    </div> <!--left side of screen-->
+    </div> <!--end left side of screen-->
 
     <app-type-chart [pokemonNames]="pokemonNames()" />
 
