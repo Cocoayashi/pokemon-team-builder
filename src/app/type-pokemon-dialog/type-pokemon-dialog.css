@@ -14,14 +14,22 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  max-height: 400px;
+  max-height: 20rem;
   overflow-y: auto;
 }
 
 .pokemon-name {
   text-transform: capitalize;
-  background: rgba(0,0,0,0.06);
+  background: rgba(0, 0, 0, 0.06);
   padding: 4px 10px;
   border-radius: 12px;
   font-size: 0.85rem;
+}
+
+.pokemon-preview {
+  position: absolute;
+ /* left: -500px; /* just to the right of the dialog */
+  top: 50%;
+ /* transform: translateY(-50%); */
+  z-index: 1001; /* above the dialog overlay */
 }

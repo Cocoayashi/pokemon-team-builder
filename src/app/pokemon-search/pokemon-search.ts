@@ -20,6 +20,8 @@ import { PokemonService } from '../services/pokemon';
   templateUrl: './pokemon-search.html',
   styleUrl: './pokemon-search.css',
 })
+
+
 export class PokemonSearch {
   private teamService = inject(TeamService);
   private pokemonService = inject(PokemonService);
@@ -31,7 +33,12 @@ export class PokemonSearch {
   // Which slot the user has clicked to fill
 
   filteredOptions = signal<string[]>([]);
-
+  onEnter(input: HTMLInputElement) {
+    if (this.filteredOptions().length > 0) {
+      this.onSelect(this.filteredOptions()[0]);
+      input.value = '';
+    }
+  }
   onSearchChange(value: string): void {
     if (value.length < 2) {
       this.filteredOptions.set([]);

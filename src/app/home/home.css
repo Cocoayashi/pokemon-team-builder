@@ -1,5 +1,5 @@
 .page {
-  max-width: 960px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
 }
@@ -9,20 +9,28 @@
   margin-bottom: 2rem;
 }
 
-.team-grid {
+.pokemon-grid {
   display: grid;
-  justify-content: right;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.2rem;
+  flex: 1; /* this is what made the grid take up the whole space */
+}
+
+.content {
+  display: flex;
+  gap: 2rem;
+  align-items: top;
 }
 
 .filter-bar {
   display: flex;
-  align-items: center;
+  align-items: top;
+  justify-content:center;
   gap: 1rem;
   margin-bottom: 1.5rem;
 }
 
 .game-select {
-  width: 300px;
+  width: 17rem;
+  height: 3rem;
 }

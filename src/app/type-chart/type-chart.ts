@@ -25,6 +25,7 @@ interface TypeEntry {
 })
 export class TypeChart {
   private teamService = inject(TeamService);
+  /* Dialog box for recommended types pop up */
   private dialog = inject(MatDialog);
   pokemonNames = input<string[]>([]);
 
@@ -36,9 +37,6 @@ export class TypeChart {
 
     if (!chart) return null;
 
-    const filledSlots = team.filter(slot => slot !== null);
-    if (filledSlots.length === 0) return null;
-
     const result = this.teamService.getTeamDefensiveProfile(team);
     if (!result) return null;
 
@@ -49,14 +47,22 @@ export class TypeChart {
     const noProtection: TypeEntry[] = [];
 
     for (const type of allTypes) {
-      const m = result[type];
-      if (m === 0) immunities.push({ type, multiplier: m });
-      else if (m > 1) {
-        weaknesses.push({ type, multiplier: m });
-        noProtection.push({ type, multiplier: m });
+      /* This is what the damage against your pokemon is multiplied by */
+      const multiplier = result[type];
+      
+  /* multiplied by 0, you have a pokemon that is immune to this type  */
+      if (multiplier === 0) immunities.push({ type, multiplier: multiplier });
+
+  /* multiplied by either 2 or 4, your pokemon is weak to this type */
+      else if (multiplier > 1) {
+        weaknesses.push({ type, multiplier: multiplier });
+        noProtection.push({ type, multiplier: multiplier });
       }
-      else if (m < 1) resistances.push({ type, multiplier: m });
-      else noProtection.push({ type, multiplier: m });
+  /* multiplied by either .5 or .25, your pokemon has resistance against this type */
+      else if (multiplier < 1) resistances.push({ type, multiplier: multiplier });
+  
+  /* else, the type wasnt mentioned and the user should know that */
+      else noProtection.push({ type, multiplier: multiplier });
     }
 
     const recommendations = this.teamService.getRecommendedTypes(

@@ -1,8 +1,13 @@
+<div>      @if (hoveredPokemon()) {
+      <div class="pokemon-preview">
+        <app-pokemon-card [cardPokemon]="hoveredPokemon()" />
+      </div>
+    }
 <div class="dialog-header">
-  <h2 mat-dialog-title>
+  <h4 mat-dialog-title>
     <span class="type-chip type-{{ data.type }}">{{ data.type }}</span>
     Pokémon
-  </h2>
+  </h4>
   <button mat-icon-button (click)="close()">
     <mat-icon>close</mat-icon>
     
@@ -17,11 +22,15 @@
 
   <div class="pokemon-list">
     @for (name of filteredPokemon; track name) {
-      <span class="pokemon-name">{{ name }}</span>
-    }
+      <button class="pokemon-name" (mouseover)="showPokeCard(name)" >
+      <span >{{ name }}</span>
+    </button>}
   </div>
+
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
   <button mat-button (click)="close()">Close</button>
 </mat-dialog-actions>
+
+</div>

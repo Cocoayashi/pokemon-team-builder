@@ -1,3 +1,13 @@
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+mat-card {
+  height: 100%;
+}
+
 .pokemon-card {
   min-height: 120px;
 }
@@ -16,8 +26,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
   min-height: 120px;
+  opacity: 50%;
+}
+
+.empty-slot-placeholder{
+  width: 80px;
+  height: 80px;
+  opacity: 50%;
 }
 
 .pokemon-name {
@@ -30,6 +46,7 @@
 
 .slot-profile {
 width: 100%;
+align-items: stretch;
 justify-content: center;
 margin-top: 0.25rem;
 }
@@ -49,4 +66,9 @@ margin-top: 0.25rem;
   gap: 0.4rem;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.remove-pokemon-button {
+  display: flex;
+justify-content: flex-start;
 }

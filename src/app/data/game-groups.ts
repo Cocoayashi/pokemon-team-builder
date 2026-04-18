@@ -21,7 +21,7 @@ export const GAME_GROUPS: GameGroup[] = [
   { label: 'Gen 6: Omega Ruby & Alpha Sapphire',  pokedexes: ['updated-hoenn'] },
   { label: 'Gen 7: Sun & Moon',                   pokedexes: ['original-alola'] },
   { label: 'Gen 7: Ultra Sun & Ultra Moon',       pokedexes: ['updated-alola'] },
-  { label: 'Gen 7: Let\'s Go Pikachu & Eevee',   pokedexes: ['letsgo-kanto'] },
+  { label: 'Gen 7: Let\'s Go Pikachu & Eevee',    pokedexes: ['letsgo-kanto'] },
   { label: 'Gen 8: Sword & Shield',               pokedexes: ['galar'],          dlcPokedexes: ['isle-of-armor', 'crown-tundra'] },
   { label: 'Gen 8: Legends: Arceus',              pokedexes: ['hisui'] },
   { label: 'Gen 9: Scarlet & Violet',             pokedexes: ['paldea'],          dlcPokedexes: ['kitakami', 'blueberry'] },

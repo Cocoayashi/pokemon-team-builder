@@ -20,6 +20,14 @@ main {
   background-color: var(--mat-sys-primary);
   color: var(--mat-sys-on-primary);
   border-bottom: none;
+  background-color: #d43737;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 4px,
+    rgba(0,0,0,0.08) 4px,
+    rgba(0,0,0,0.08) 8px
+);
 }
 
 .app-header-title {

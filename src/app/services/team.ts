@@ -46,6 +46,14 @@ export class TeamService {
     });
   }
 
+  clearTeam(): void {
+    this.team.update(current => {
+      const updated = [...current];
+      updated.fill(null);
+      return updated;
+    })
+  }
+
   getPokemonDefensiveProfile(types: string[]): Record<string, number> | null {
     const chart = this.typeChart();
     if (!chart) return null;
@@ -69,13 +77,17 @@ export class TeamService {
     if (!chart) return null;
 
     const filledSlots = pokemon.filter(slot => slot !== null);
-    if (filledSlots.length === 0) return null;
 
     const allTypes = Object.keys(chart);
     const result: Record<string, number> = {};
 
     for (const attackingType of allTypes) {
       let best = Infinity;
+      if(!filledSlots.length){
+        best = 1;
+        result[attackingType] = best;
+        continue;
+      }
       for (const slot of filledSlots) {
         const types = slot!.types.map(t => t.type.name);
         let multiplier = 1;

@@ -3,10 +3,11 @@
     <mat-spinner diameter="32" />
     <p>Loading type data...</p>
   </div>
-} @else if (profile()) {
+} 
   <div class="type-chart">
     <h2>Team Defensive Profile</h2>
-
+@if(profile()){
+  
     @if (profile()!.weaknesses.length) {
       <section>
         <h3>Weaknesses</h3>
@@ -40,6 +41,7 @@
       </section>
     }
 
+
     @if (profile()!.noProtection.length) {
       <section>
         <h3>No Protection</h3>
@@ -67,5 +69,5 @@
         </div>
       </section>
     }
+  }
   </div>
-}

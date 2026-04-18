@@ -1,6 +1,12 @@
 <mat-card class="pokemon-card">
   @if (cardPokemon()) {
+          <div class="remove-pokemon-button">
+            <button mat-icon-button color="warn" (click)="removePokemon()">
+        <mat-icon>close</mat-icon>
+      </button>
+      </div>
     <mat-card-content class="slot-filled">
+
             <img [src]="cardPokemon()!.sprites.front_default" [alt]="cardPokemon()!.name" />
             <p class="pokemon-name">{{ cardPokemon()!.name }}</p>
             <div class="type-chips">
@@ -42,13 +48,11 @@
           </div>
         }
       }
-      <button mat-icon-button color="warn" (click)="removePokemon()">
-        <mat-icon>close</mat-icon>
-      </button>
     </mat-card-content>
   } @else {
   <mat-card-content class="slot-empty">
-    <p>Select a Pokémon</p>
+    <span>Add a Pokémon</span>
+    <img src="images/pokeball.png" alt="pokeball" class="empty-slot-placeholder">
   </mat-card-content>
 }
 </mat-card>

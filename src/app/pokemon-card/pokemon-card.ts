@@ -26,7 +26,7 @@ export class PokemonCard {
   private teamService = inject(TeamService);
 
   // Inputs
-  cardPokemon = input<TeamSlot>();
+  cardPokemon = input<Pokemon | null>();
   index = input<number>(0);
 
   getSlotProfile() {
